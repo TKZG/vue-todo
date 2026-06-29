@@ -92,13 +92,18 @@ onMounted(loadTodos)
     <p>残り: {{ remaining }} 件</p>
     <p v-if="loading">読み込み中…</p>
 
-    <ul>
-      <li v-for="todo in todos" :key="todo.id">
-        <label>
-          <input type="checkbox" :checked="todo.completed" @change="toggleTodo(todo)" />
-          <span :class="{ done: todo.completed }">{{ todo.text }}</span>
+    <ul class="todo-list">
+      <li v-for="todo in todos" :key="todo.id" class="todo-item">
+        <label class="todo-label">
+          <input
+            class="todo-checkbox"
+            type="checkbox"
+            :checked="todo.completed"
+            @change="toggleTodo(todo)"
+          />
+          <span class="todo-text" :class="{ done: todo.completed }">{{ todo.text }}</span>
         </label>
-        <button @click="removeTodo(todo.id)">削除</button>
+        <button class="remove-button" @click="removeTodo(todo.id)">削除</button>
       </li>
     </ul>
   </div>
@@ -106,7 +111,7 @@ onMounted(loadTodos)
 
 <style scoped>
 .container {
-  max-width: 400px;
+  max-width: 480px;
   margin: 40px auto;
   font-family: sans-serif;
 }
@@ -114,17 +119,74 @@ onMounted(loadTodos)
 .input-area {
   display: flex;
   gap: 8px;
+  margin-bottom: 12px;
 }
 
-input[type='text'],
-input {
+.input-area input {
   flex: 1;
-  padding: 6px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
 }
 
-button {
-  padding: 6px 10px;
+.input-area button,
+.remove-button {
+  padding: 8px 12px;
   cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+.input-area button {
+  background: #2563eb;
+  color: white;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.todo-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-checkbox {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #16a34a;
+}
+
+.todo-text {
+  color: black;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.remove-button {
+  flex-shrink: 0;
+  background: #ef4444;
+  color: white;
 }
 
 .done {

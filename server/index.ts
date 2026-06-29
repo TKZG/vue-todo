@@ -1,6 +1,9 @@
+import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import todosRouter from './routes/todos.js'
+
+dotenv.config({ path: '.env.local' })
 
 const app = express()
 const port = Number(process.env.PORT ?? 3000)
