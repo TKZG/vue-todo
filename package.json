@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "run-p dev:client dev:server",
+    "dev:full": "docker compose up -d && npm run prisma:migrate && npm run dev",
     "dev:client": "vite",
     "dev:server": "tsx watch server/index.ts",
     "build": "run-p type-check \"build-only {@}\" --",
