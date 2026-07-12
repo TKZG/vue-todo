@@ -1,4 +1,4 @@
-export type Todo = {
+export type Todo ={
     id: number
     text: string
     completed: boolean
@@ -11,7 +11,7 @@ export type TodoCreatePayload = {
 
 export type TodoUpdatePayload = Partial<Pick<Todo, 'text' | 'completed'>>
 
-const baseUrl = '/api/todos'
+const baseUrl = 'http://localhost:3001/todos'
 
 // 共通の fetch 処理: ネットワークの結果を受け取って JSON を返す
 const request = async <T>(url: string, init?: RequestInit): Promise<T> => {
